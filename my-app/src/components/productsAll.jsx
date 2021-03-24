@@ -50,13 +50,8 @@ const ProductsAll = ({
      }
     const editItem = () =>{
         if(activeId){
-
-          updateItemDatabase(activeId,{
-              name:form.getFieldsValue("name"),
-              phone:form.getFieldsValue("phone"),
-              email:form.getFieldsValue("email"),
-              country:form.getFieldsValue("country"),
-          })
+            const posData = form.getFieldsValue()
+          updateItemDatabase(activeId,posData)
             handleCancel()
         }
     }
@@ -161,7 +156,7 @@ form.setFieldsValue({
             </div>
 
             <Table columns={columns} dataSource={data} />
-            <Modal width={600} title="Add product" onCancel={handleCancel} visible={isModalVisible} footer={[null,null]}  >
+            <Modal width={600} title={activeId?"Edit and Delete":"Add product"} onCancel={handleCancel} visible={isModalVisible} footer={[null,null]}  >
                 <Form className={'form-product-add'}
                       onFinish={onFinish}
                       form={form}
@@ -277,4 +272,3 @@ export default connect(({country,products})=>({
 
 
 
-//Errora talis dzel error re2-i
